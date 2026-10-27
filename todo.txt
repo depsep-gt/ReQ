@@ -1,0 +1,7 @@
+- Combine multiplayer and singleplayer branch for easy mp/sp integration
+- Add client/server dlls for easy modding support
+- Remove software renderer; outdated
+- Update GL renderer to also use SDL3
+- Add multiple renderer support (DX11, DX12 and Vulkan)
+- Make level editor
+- Make source hierarchy easier to read
