@@ -1,4 +1,4 @@
-# Experimental branch
+# ReQ Experimental branch
 
 ## Things in here may not work properly. This is only used for testing new features, like benchmarking and such.
 Welcome to the experimental branch! In this branch, we are trying to create a level editor, developer SDK, and a easier-to-read codebase.
