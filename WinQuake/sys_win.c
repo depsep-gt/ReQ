@@ -301,8 +301,8 @@ void Sys_Init (void)
 	unsigned int	lowpart, highpart;
 	OSVERSIONINFO	vinfo;
 
-	MaskExceptions ();
-	Sys_SetFPCW ();
+	//MaskExceptions ();
+	//Sys_SetFPCW ();
 
 	if (!QueryPerformanceFrequency (&PerformanceFreq))
 		Sys_Error ("No hardware timer available");
@@ -473,7 +473,7 @@ double Sys_FloatTime (void)
 	unsigned int		temp, t2;
 	double				time;
 
-	Sys_PushFPCW_SetHigh ();
+	//Sys_PushFPCW_SetHigh ();
 
 	QueryPerformanceCounter (&PerformanceCount);
 
@@ -520,7 +520,7 @@ double Sys_FloatTime (void)
 		}
 	}
 
-	Sys_PopFPCW ();
+	//Sys_PopFPCW ();
 
     return curtime;
 }
