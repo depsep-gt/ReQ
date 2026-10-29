@@ -1,6 +1,6 @@
 code
 
-equ	trap_Printf				-1
+equ	trap_Print				-1
 equ	trap_Error				-2
 equ	trap_Milliseconds		-3
 equ	trap_Cvar_Register		-4
@@ -181,7 +181,7 @@ equ trap_BotAvoidGoalTime				-541
 equ trap_BotInitLevelItems				-542
 equ trap_BotUpdateEntityItems			-543
 equ trap_BotLoadItemWeights				-544
-equ trap_BotFreeItemWeights				-546
+equ trap_BotFreeItemWeights				-545
 equ trap_BotSaveGoalFuzzyLogic			-546
 equ trap_BotAllocGoalState				-547
 equ trap_BotFreeGoalState				-548

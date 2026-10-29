@@ -15,7 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Foobar; if not, write to the Free Software
+along with Quake III Arena source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
@@ -61,7 +61,7 @@ properly.
 
 
 #define	MAX_FACETS			1024
-#define	MAX_PATCH_PLANES	2048
+#define	MAX_PATCH_PLANES	4096
 
 typedef struct {
 	float	plane[4];

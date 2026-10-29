@@ -15,7 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Foobar; if not, write to the Free Software
+along with Quake III Arena source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
@@ -38,7 +38,7 @@ static char		*ui_botInfos[MAX_BOTS];
 static int		ui_numArenas;
 static char		*ui_arenaInfos[MAX_ARENAS];
 
-#ifndef MISSIONPACK // bk001206
+#ifndef MISSIONPACK
 static int		ui_numSinglePlayerArenas;
 static int		ui_numSpecialSinglePlayerArenas;
 #endif
@@ -115,7 +115,7 @@ static void UI_LoadArenasFromFile( char *filename ) {
 		return;
 	}
 	if ( len >= MAX_ARENAS_TEXT ) {
-		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_ARENAS_TEXT ) );
+		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i\n", filename, len, MAX_ARENAS_TEXT ) );
 		trap_FS_FCloseFile( f );
 		return;
 	}
@@ -136,14 +136,12 @@ void UI_LoadArenas( void ) {
 	int			numdirs;
 	vmCvar_t	arenasFile;
 	char		filename[128];
-	char		dirlist[1024];
+	char		dirlist[4096];
 	char*		dirptr;
-	int			i, n;
+	int			i;
 	int			dirlen;
-	char		*type;
 
 	ui_numArenas = 0;
-	uiInfo.mapCount = 0;
 
 	trap_Cvar_Register( &arenasFile, "g_arenasFile", "", CVAR_INIT|CVAR_ROM );
 	if( *arenasFile.string ) {
@@ -154,7 +152,7 @@ void UI_LoadArenas( void ) {
 	}
 
 	// get all arenas from .arena files
-	numdirs = trap_FS_GetFileList("scripts", ".arena", dirlist, 1024 );
+	numdirs = trap_FS_GetFileList("scripts", ".arena", dirlist, 4096 );
 	dirptr  = dirlist;
 	for (i = 0; i < numdirs; i++, dirptr += dirlen+1) {
 		dirlen = strlen(dirptr);
@@ -164,8 +162,20 @@ void UI_LoadArenas( void ) {
 	}
 	trap_Print( va( "%i arenas parsed\n", ui_numArenas ) );
 	if (UI_OutOfMemory()) {
-		trap_Print(S_COLOR_YELLOW"WARNING: not anough memory in pool to load all arenas\n");
+		trap_Print(S_COLOR_YELLOW"WARNING: not enough memory in pool to load all arenas\n");
 	}
+}
+
+/*
+===============
+UI_LoadArenasIntoMapList
+===============
+*/
+void UI_LoadArenasIntoMapList( void ) {
+	int			n;
+	char		*type;
+
+	uiInfo.mapCount = 0;
 
 	for( n = 0; n < ui_numArenas; n++ ) {
 		// determine type
@@ -226,7 +236,7 @@ static void UI_LoadBotsFromFile( char *filename ) {
 		return;
 	}
 	if ( len >= MAX_BOTS_TEXT ) {
-		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_BOTS_TEXT ) );
+		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i\n", filename, len, MAX_BOTS_TEXT ) );
 		trap_FS_FCloseFile( f );
 		return;
 	}
@@ -310,7 +320,7 @@ char *UI_GetBotInfoByName( const char *name ) {
 	return NULL;
 }
 
-int UI_GetNumBots() {
+int UI_GetNumBots( void ) {
 	return ui_numBots;
 }
 
